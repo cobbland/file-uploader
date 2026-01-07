@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/cobbland/file-uploader#readme",
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.2.1"
   }
 }
