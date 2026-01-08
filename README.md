@@ -7,11 +7,35 @@ A file uploader, made as part of The Odin Project, following [these directions](
 Stuff to use (and relearn).
 
 - [ ] Web framework, routing, etc: Express
+    - [x] install
+    - [x] setup
+    - [x] test
+    - [ ] (re)learn
 - [ ] Templating, views: EJS
+    - [ ] install
+    - [ ] setup
+    - [ ] test
+    - [ ] (re)learn
 - [ ] Database: PostgreSQL
+    - [ ] install
+    - [ ] setup
+    - [ ] test
+    - [ ] (re)learn
 - [ ] Database interaction: Prisma
+    - [ ] install
+    - [ ] setup
+    - [ ] test
+    - [ ] (re)learn
 - [ ] User authentication: Passport
+    - [ ] install
+    - [ ] setup
+    - [ ] test
+    - [ ] (re)learn
 - [ ] File storage: [supabase](https://supabase.com/) probably
+    - [ ] install
+    - [ ] setup
+    - [ ] test
+    - [ ] learn
 
 ## Steps
 
