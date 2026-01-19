@@ -1,11 +1,33 @@
+// imports
 const express = require('express');
-const app = express();
-const port = 3000;
+const path = require('path');
 
+
+// initializations and such
+const app = express();
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+// routes and route variables
+const routesPath = path.join(__dirname, 'routes');
+const userRouter = require(path.join(routesPath, 'userRouter.js'));
+app.use('/user', userRouter);
+app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
     res.send('Hello, World!');
 });
+app.use((req, res, next) => {
+    res.status(404).send(
+        "The planet you're searching for doesn't exist."
+    )
+})
 
-app.listen(port, () => {
-    console.log(`Running at http://localhost:${port}`);
+// start app
+const PORT =  process.env.PORT || 3000;
+
+app.listen(PORT, (err) => {
+    if (err) {
+        throw new Error(err);
+    }
+    console.log(`Running at http://localhost:${PORT}`);
 });

@@ -6,18 +6,18 @@ A file uploader, made as part of The Odin Project, following [these directions](
 
 Stuff to use (and relearn).
 
-- [ ] Web framework, routing, etc: Express
+- [x] Web framework, routing, etc: Express
     - [x] install
     - [x] setup
     - [x] test
-    - [ ] (re)learn
-- [ ] Templating, views: EJS
-    - [ ] install
-    - [ ] setup
-    - [ ] test
-    - [ ] (re)learn
+    - [x] (re)learn
+- [x] Templating, views: EJS
+    - [x] install
+    - [x] setup
+    - [x] test
+    - [x] (re)learn
 - [ ] Database: PostgreSQL
-    - [ ] install
+    - [x] install
     - [ ] setup
     - [ ] test
     - [ ] (re)learn
