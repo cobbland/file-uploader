@@ -6,42 +6,19 @@ A file uploader, made as part of The Odin Project, following [these directions](
 
 Stuff to use (and relearn).
 
-- [x] Web framework, routing, etc: Express
-    - [x] install
-    - [x] setup
-    - [x] test
-    - [x] (re)learn
-- [x] Templating, views: EJS
-    - [x] install
-    - [x] setup
-    - [x] test
-    - [x] (re)learn
-- [ ] Database: PostgreSQL
-    - [x] install
-    - [ ] setup
-    - [ ] test
-    - [ ] (re)learn
-- [ ] Database interaction: Prisma
-    - [ ] install
-    - [ ] setup
-    - [ ] test
-    - [ ] (re)learn
-- [ ] User authentication: Passport
-    - [ ] install
-    - [ ] setup
-    - [ ] test
-    - [ ] (re)learn
-- [ ] File storage: [supabase](https://supabase.com/) probably
-    - [ ] install
-    - [ ] setup
-    - [ ] test
-    - [ ] learn
+- Web framework, routing, etc: Express
+- Templating, views: EJS
+- Database: PostgreSQL
+- Database interaction: Prisma
+- User authentication: Passport
+- File storage: [supabase](https://supabase.com/)
+
 
 ## Steps
 
 Putting it all together.
 
-- [ ] Set up a new project using Express and Prisma. Install all the necessary dependencies including Passport etc.
+- [x] Set up a new project using Express and Prisma. Install all the necessary dependencies including Passport etc.
 - [ ] Set up session based authentication using Passport.js. Use the Prisma session store library to persist sessions in the database.
 - [ ] Add a form where authenticated users can upload a file. Save the file in your filesystem for now. You’ll need to integrate the multer middleware. We’ll upload these files once we have all other features working.
 - [ ] Add folders. Users should be able to CRUD folders and upload files in them. Set up routes and necessary database interactions for this.
