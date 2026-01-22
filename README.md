@@ -11,6 +11,7 @@ Stuff to use (and relearn).
 - Database: PostgreSQL
 - Database interaction: Prisma
 - User authentication: Passport
+- File uploading: [Multer](https://github.com/expressjs/multer)
 - File storage: [supabase](https://supabase.com/)
 
 
@@ -25,5 +26,4 @@ Putting it all together.
 - [ ] Add a route to view specific file details like name, size, and upload time. There should be a download button to allow users to download the file.
 - [ ] Finally, add logic to upload files. You could store it in a database, but it’s advised to use a cloud storage service for this usecase. You can use Cloudinary or Supabase storage. When a file is uploaded, save the file URL in the database.
 - [ ] Validate your files! How you do this is up to you. You can limit certain file types to upload and/or restrict files that are too heavy.
-- [ ] Extra credit
-- [ ] Add a share folder functionality. When a user wants to share a folder (and all of its contents), they should have a form to specify the duration i.e. 1d, 10d etc. This should generate a link that can be shared with anyone (unauthenticated users). For example, the link could be in the following format: https://yourapp.com/share/c758c495-0705-44c6-8bab-6635fd12cf81
+- [ ] Extra credit: Add a share folder functionality. When a user wants to share a folder (and all of its contents), they should have a form to specify the duration i.e. 1d, 10d etc. This should generate a link that can be shared with anyone (unauthenticated users). For example, the link could be in the following format: https://yourapp.com/share/c758c495-0705-44c6-8bab-6635fd12cf81
