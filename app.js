@@ -1,6 +1,9 @@
 // imports
 const express = require('express');
 const path = require('path');
+const session = require('express-session');
+const { prisma } = require('./lib/prisma');
+const { PrismaSessionStore } = require('@quixo3/prisma-session-store');
 require("dotenv/config");
 
 
@@ -8,6 +11,28 @@ require("dotenv/config");
 const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
+// session
+const sessionStore = new PrismaSessionStore(
+    prisma,
+    {
+        checkPeriod: 2 * 60 * 1000,
+        dbRecordIdIsSessionId: true,
+        dbRecordIdFunction: undefined,
+    }
+);
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24,
+    }
+}));
 
 // routes and route variables
 const routesPath = path.join(__dirname, 'routes');
