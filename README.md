@@ -9,6 +9,7 @@ Stuff to use (and relearn).
 - Web framework, routing, etc: Express
 - Templating, views: EJS
 - Database: PostgreSQL and Prisma
+- Data validation: express-validator
 - User authentication: Passport and bcryptjs
 - Sessions: express-session and prisma-session-store
 - File uploading: [Multer](https://github.com/expressjs/multer)

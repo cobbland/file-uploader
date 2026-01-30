@@ -1,0 +1,9 @@
+<%- include('header'); -%>
+
+    <h1><%= title %></h1>
+
+    <p>You're signed in, <%= username %>!</p>
+
+    <form action="/log-out" method="post"><input type="submit" value="Log out"></form>
+    
+<%- include('footer'); -%>

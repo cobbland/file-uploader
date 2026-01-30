@@ -1,4 +1,4 @@
-const { prisma } = require('./lib/prisma');
+const { prisma } = require('../lib/prisma');
 const LocalStrategy = require('passport-local');
 
 module.exports = function(passport) {
@@ -13,16 +13,28 @@ module.exports = function(passport) {
                 if (!user) {
                     return done(null, false, { message: "Incorrect username or password" });
                 }
+                return done(null, user);
                 
             }
             catch (err) {
 
             }
         })
-    )
-}
+    );
+    passport.serializeUser((user, done) => {
+        done(null, user.id);
+    });
 
-passport.use(new LocalStrategy(function verify(username, password, cb) {
-    const user = { username: 'jacob', };
-    return cb(null, user);
-}));
+    passport.deserializeUser(async (id, done) => {
+        try {
+            const user = await prisma.user.findUnique({
+                where: {
+                    id: id,
+                },
+            });
+            done(null, user);
+        } catch (err) {
+            done(err);
+        }
+    });
+}

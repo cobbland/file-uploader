@@ -1,7 +1,12 @@
-function indexControls(req, res) {
-    res.render('log-in', {
-        title: 'Log In',
-    });
+function getIndex(req, res) {
+    if (!req.user) {
+        res.redirect('log-in');
+    } else {
+        res.render('index', {
+            title: 'File Uploader',
+            username: req.user.username,
+        });
+    }
 }
 
-module.exports = { indexControls, };
+module.exports = { getIndex };

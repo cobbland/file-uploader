@@ -4,7 +4,9 @@ const path = require('path');
 const session = require('express-session');
 const { prisma } = require('./lib/prisma');
 const { PrismaSessionStore } = require('@quixo3/prisma-session-store');
+const passport = require('passport');
 require("dotenv/config");
+require('./config/passport')(passport);
 
 
 // initializations and such
@@ -33,20 +35,23 @@ app.use(session({
         maxAge: 1000 * 60 * 60 * 24,
     }
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // routes and route variables
 const routesPath = path.join(__dirname, 'routes');
 const indexRouter = require(path.join(routesPath, 'indexRouter.js'));
 const userRouter = require(path.join(routesPath, 'userRouter.js'));
+const logInRouter = require(path.join(routesPath, 'logInRouter.js'));
+const logOutRouter = require(path.join(routesPath, 'logOutRouter.js'));
 app.use('/', indexRouter);
 app.use('/user', userRouter);
+app.use('/log-in', logInRouter);
+app.use('/log-out', logOutRouter);
 app.use(express.static(path.join(__dirname, 'public')));
-// app.get('/', (req, res) => {
-//     res.send('Hello, World!');
-// });
 app.use((req, res, next) => {
     res.status(404).send(
-        "The planet you're searching for doesn't exist."
+        `The planet you're searching for doesn't exist: ${req.url}`
     )
 })
 
