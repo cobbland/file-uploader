@@ -1,0 +1,19 @@
+<%- include('header'); -%>
+
+    <h1><%= title %></h1>
+
+    <p>Sign up here.</p>
+
+    <form action="/sign-up" method="POST">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" required>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required>
+        <label for="passwordAgain">Password Again</label>
+        <input type="password" name="passwordAgain" id="passwordAgain" required>
+        <input type="submit" value="Sign Up">
+    </form>
+
+    <p>Already have an account? <a href="/log-in">Log in</a> instead.</p>
+    
+<%- include('footer'); -%>

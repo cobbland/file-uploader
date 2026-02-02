@@ -1,0 +1,51 @@
+const { body, validationResult } = require('express-validator');
+const passport = require('passport');
+const { prisma } = require('../lib/prisma');
+
+const validateUsername = [
+    body('username').trim().notEmpty()
+];
+
+const validatePassword = [
+    body('password').custom((value, { req }) => {
+        if (value === req.body.passwordAgain) {
+            return true;
+        } else {
+            throw new Error('Passwords must match');
+        }
+    })
+];
+
+function getSignUp(req, res) {
+    if (req.user) {
+        res.redirect('/');
+    } else {
+        res.render('sign-up', {
+            title: 'Sign Up',
+        });
+    }
+}
+
+async function postSignUp(req, res) {
+    const {
+        username, password
+    } = req.body;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        res.redirect('/sign-up');
+    } else {
+        try {
+            const user = await prisma.user.create({
+                data: {
+                    username: username,
+                    password: password,
+                },
+            });
+            res.redirect('/');
+        } catch(err) {
+            console.log(err);
+        }
+    }
+}
+
+module.exports = { validateUsername, validatePassword, getSignUp, postSignUp };
