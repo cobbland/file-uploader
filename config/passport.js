@@ -1,5 +1,6 @@
 const { prisma } = require('../lib/prisma');
 const LocalStrategy = require('passport-local');
+const bcrypt = require('bcryptjs');
 
 module.exports = function(passport) {
     passport.use(
@@ -13,11 +14,15 @@ module.exports = function(passport) {
                 if (!user) {
                     return done(null, false, { message: "Incorrect username or password" });
                 }
+                const match = await bcrypt.compare(password, user.password);
+                if (!match) {
+                    return done(null, false, { message: "Incorrect username or password" });
+                }
                 return done(null, user);
                 
             }
             catch (err) {
-
+                return done(err);
             }
         })
     );
