@@ -45,11 +45,13 @@ const userRouter = require(path.join(routesPath, 'userRouter.js'));
 const signUpRouter = require(path.join(routesPath, 'signUpRouter.js'));
 const logInRouter = require(path.join(routesPath, 'logInRouter.js'));
 const logOutRouter = require(path.join(routesPath, 'logOutRouter.js'));
+const uploadFileRouter = require(path.join(routesPath, 'uploadFileRouter.js'));
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/sign-up', signUpRouter);
 app.use('/log-in', logInRouter);
 app.use('/log-out', logOutRouter);
+app.use('/upload-file', uploadFileRouter);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use((req, res, next) => {
     res.status(404).send(
