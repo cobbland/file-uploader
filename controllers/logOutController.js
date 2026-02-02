@@ -1,6 +1,10 @@
-function postLogOut(req, res) {
-    // log the user out
-    res.redirect('log-in')
+async function postLogOut(req, res, next) {
+    req.logOut(function(err) {
+        if (err) {
+            return next(err)
+        }
+        res.redirect('/');
+    }); 
 }
 
 module.exports = { postLogOut };
