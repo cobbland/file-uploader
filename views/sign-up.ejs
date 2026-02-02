@@ -4,6 +4,14 @@
 
     <p>Sign up here.</p>
 
+    <% if (locals.errors) { %>
+        <ul style="color: red;">
+            <% errors.forEach(error => { %>
+                <li><%= error.msg %></li>
+            <% }) %>
+        </ul>
+    <% } %>
+
     <form action="/sign-up" method="POST">
         <label for="username">Username</label>
         <input type="text" name="username" id="username" required>

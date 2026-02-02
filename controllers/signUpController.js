@@ -3,8 +3,18 @@ const passport = require('passport');
 const { prisma } = require('../lib/prisma');
 
 const validateUsername = [
-    body('username').trim().notEmpty()
-];
+    body('username').trim().notEmpty().custom(async value => {
+        const user = await prisma.user.findUnique({
+            where : {
+                username: value,
+            },
+        });
+        if (user) {
+            throw new Error('Username already in use');
+        } else {
+            return true;
+        }
+})];
 
 const validatePassword = [
     body('password').custom((value, { req }) => {
@@ -32,7 +42,10 @@ async function postSignUp(req, res) {
     } = req.body;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        res.redirect('/sign-up');
+        return res.status(400).render('sign-up', {
+            title: 'Sign Up',
+            errors: errors.array(),
+        })
     } else {
         try {
             const user = await prisma.user.create({
