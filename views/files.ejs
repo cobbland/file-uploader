@@ -4,6 +4,10 @@
 
     <p>View and manage your files and folders.</p>
 
+    <% if (locals.folder) { %>
+        <h2><%= folder.name %></h2>
+    <% } %>
+
     <% if (locals.folders) { %>
         <ul id="folders">
             <% folders.forEach(folder => { %>
@@ -19,6 +23,29 @@
             <% }) %>
         </ul>
     <% } %>
+
+    <% if (locals.folder) { %>
+        <p>Upload a file here.</p>
+
+        <form action="/upload-file" method="post" enctype="multipart/form-data">
+            <input type="text" name="folder" id="folder" placeholder="<%= folder.id %>" style="display: none;">
+            <label for="file">Upload a file</label>
+            <input type="file" name="file" id="file">
+            <input type="submit" value="Upload">
+        </form>
+    <% } %>
+
+    <p>Create folder here.</p>
+    <form action="/create-folder" method="post">
+        <% if (locals.folder) { %>
+            <input type="text" name="folder" id="folder" placeholder="<%= locals.folder.id %>" style="display: none;">
+        <% } else { %>
+            <input type="text" name="folder" id="folder" placeholder="<%= null %>" style="display: none;">
+        <% } %>
+        <label for="newFolder">Folder Name</label>
+        <input type="text" name="newFolder" id="newFolder" placeholder="New Folder">
+        <input type="submit" value="Create">
+    </form>
 
     <p>Return <a href="/">home</a>.</p>
     

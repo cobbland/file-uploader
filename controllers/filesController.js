@@ -53,7 +53,8 @@ async function getFolder(req, res) {
         });
         if (folder.userId === user.id) {
             res.render('files', {
-                title: folder.name,
+                title: 'Files',
+                folder: folder,
                 folders: folders,
                 files: files,
             });
