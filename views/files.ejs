@@ -4,6 +4,22 @@
 
     <p>View and manage your files and folders.</p>
 
+    <% if (locals.folders) { %>
+        <ul id="folders">
+            <% folders.forEach(folder => { %>
+                <li><a href="/files/<%= folder.id %>"><%= folder.name %></a></li>
+            <% }) %>
+        </ul>
+    <% } %>
+
+    <% if (locals.files) { %>
+        <ul id="files">
+            <% folders.forEach(folder => { %>
+                <li><a href="/files/<%= folder.id %>/<%= file.id %>"><%= files.name %></a></li>
+            <% }) %>
+        </ul>
+    <% } %>
+
     <p>Return <a href="/">home</a>.</p>
     
 <%- include('footer'); -%>

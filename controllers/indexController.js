@@ -1,4 +1,4 @@
-async function getIndex(req, res) {
+function getIndex(req, res) {
     if (!req.user) {
         res.redirect('log-in');
     } else {
