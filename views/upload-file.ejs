@@ -1,0 +1,21 @@
+<%- include('header'); -%>
+
+    <h1><%= title %></h1>
+
+    <p>Upload a file.</p>
+
+    <form action="/upload-file" method="post" enctype="multipart/form-data">
+        <label for="folder">Choose folder</label>
+        <select name="folder" id="folder">
+            <% folders.forEach(folder => { %>
+                <option value="<%= folder.id %>"><%= folder.name %></option>
+            <% }) %>
+        </select>
+        <label for="file">Upload a file</label>
+        <input type="file" name="file" id="file">
+        <input type="submit" value="Upload">
+    </form>
+
+    <p>Return <a href="/">home</a>.</p>
+    
+<%- include('footer'); -%>
