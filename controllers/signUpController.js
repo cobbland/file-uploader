@@ -54,6 +54,11 @@ async function postSignUp(req, res) {
                 data: {
                     username: username,
                     password: hashedPassword,
+                    folders: {
+                        create: {
+                            name: username,
+                        }
+                    },
                 },
             });
             res.redirect('/');
