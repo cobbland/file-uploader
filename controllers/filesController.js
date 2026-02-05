@@ -68,4 +68,20 @@ async function getFolder(req, res) {
     }
 }
 
-module.exports = { getFiles, getFolder };
+async function postCreateFolder(req, res) {
+
+}
+
+async function postEditFolder(req, res) {
+
+}
+
+async function postDeleteFolder(res, res) {
+
+}
+
+async function postUploadFile(req, res) {
+    res.redirect(`/files/${req.body.folder}`);
+}
+
+module.exports = { getFiles, getFolder, postCreateFolder, postEditFolder, postDeleteFolder, postUploadFile };
