@@ -7,7 +7,9 @@
     <% if (locals.folder) { %>
         <h2><%= folder.name %></h2>
         <form action="/files/<%= folder.id %>/edit-folder" method="post">
-            <input type="submit" value="Edit Folder">
+            <label for="renamedFolder">Rename folder</label>
+            <input type="text" name="renamedFolder" id="renamedFolder" value="<%= folder.name %>">
+            <input type="submit" value="Rename">
         </form>
         <form action="/files/<%= folder.id %>/delete-folder" method="post">
             <input type="submit" value="Delete Folder">
@@ -31,8 +33,6 @@
     <% } %>
 
     <% if (locals.folder) { %>
-        <p>Upload a file here.</p>
-
         <form action="/files/upload-file" method="post" enctype="multipart/form-data">
             <input type="text" name="folder" id="folder" value="<%= folder.id %>" style="display: none;">
             <label for="file">Upload a file</label>
@@ -41,14 +41,13 @@
         </form>
     <% } %>
 
-    <p>Create folder here.</p>
     <form action="/files/create-folder" method="post">
         <% if (locals.folder) { %>
             <input type="text" name="folder" id="folder" value="<%= locals.folder.id %>" style="display: none;">
         <% } else { %>
             <input type="text" name="folder" id="folder" style="display: none;">
         <% } %>
-        <label for="newFolder">Folder Name</label>
+        <label for="newFolder">Create a folder</label>
         <input type="text" name="newFolder" id="newFolder" value="new-folder">
         <input type="submit" value="Create">
     </form>

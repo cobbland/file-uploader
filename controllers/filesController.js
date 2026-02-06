@@ -87,7 +87,15 @@ async function postCreateFolder(req, res) {
 }
 
 async function postEditFolder(req, res) {
-
+    const folder = await prisma.folder.update({
+        where: {
+            id: +req.params.folderId,
+        },
+        data: {
+            name: req.body.renamedFolder,
+        }
+    });
+    res.redirect(`/files/${req.params.folderId}`);
 }
 
 async function postDeleteFolder(req, res) {
