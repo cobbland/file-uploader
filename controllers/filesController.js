@@ -16,9 +16,11 @@ async function getFiles(req, res) {
                     parent: null,
                 },
             });
+            const files = null; // TKTK
             res.render('files', {
                 title: 'Files',
                 folders: folders,
+                files: files | null,
             });
         } catch(err) {
             console.log(err.message);
@@ -69,7 +71,19 @@ async function getFolder(req, res) {
 }
 
 async function postCreateFolder(req, res) {
-
+    const user = await prisma.user.findUnique({
+        where : {
+            username: req.user.username,
+        },
+    });
+    const folder = await prisma.folder.create({
+        data: {
+            name: req.body.newFolder,
+            userId: user.id,
+            parentId: +req.body.folder || null,
+        },
+    });
+    res.redirect(`/files/${folder.id}`);
 }
 
 async function postEditFolder(req, res) {

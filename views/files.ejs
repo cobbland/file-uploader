@@ -24,7 +24,7 @@
 
     <% if (locals.files) { %>
         <ul id="files">
-            <% folders.forEach(folder => { %>
+            <% files.forEach(file => { %>
                 <li><a href="/files/<%= folder.id %>/<%= file.id %>"><%= files.name %></a></li>
             <% }) %>
         </ul>
@@ -49,7 +49,7 @@
             <input type="text" name="folder" id="folder" style="display: none;">
         <% } %>
         <label for="newFolder">Folder Name</label>
-        <input type="text" name="newFolder" id="newFolder" placeholder="New Folder">
+        <input type="text" name="newFolder" id="newFolder" value="new-folder">
         <input type="submit" value="Create">
     </form>
 
