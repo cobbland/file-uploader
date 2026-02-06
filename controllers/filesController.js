@@ -83,15 +83,26 @@ async function postCreateFolder(req, res) {
             parentId: +req.body.folder || null,
         },
     });
-    res.redirect(`/files/${folder.id}`);
+    res.redirect(`/files/${req.body.folder}`);
 }
 
 async function postEditFolder(req, res) {
 
 }
 
-async function postDeleteFolder(res, res) {
-
+async function postDeleteFolder(req, res) {
+    const deleteFolders = await prisma.folder.deleteMany({
+        where: {
+            parentId: +req.params.folderId,
+        },
+    });
+    const deleteFiles = null; //TKTK
+    const deleteFolder = await prisma.folder.deleteMany({
+        where: {
+            id: +req.params.folderId,
+        },
+    });
+    res.redirect('/files');
 }
 
 async function postUploadFile(req, res) {
